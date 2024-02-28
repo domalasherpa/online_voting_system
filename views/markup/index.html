@@ -3,22 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <link rel="stylesheet" href="../styles/feedbackFormStyle.css" />
-    <!-- <link rel="stylesheet" href="../styles/design.css" /> -->
+    <link rel="stylesheet" href="../styles/design.css" />
     <link rel="stylesheet" href="../styles/about.css" />
     <link rel="stylesheet" href="../styles/steps.css" />
     <title>Document</title>
   </head>
   <body>
     <!-- HERO PAGE -->
-    <!-- <div class="wrapper display">
+    <div class="wrapper display">
       <div class="img"><img src="../images/heroImage.jpg" alt="" /></div>
       <div class="content">
         <nav>
           <ul class="display">
-            <li>About</li>
-            <li>Contact</li>
+            <li><a href="#about-section">About</a></li>
+            <li><a href="#contact-section">Contact</a></li>
             <li><button href="#" class="login">Log In</button></li>
           </ul>
         </nav>
@@ -34,30 +34,30 @@
           <a class="readmore">How it works</a>
         </footer>
       </div>
-    </div> -->
+    </div>
 
     <!-- ABOUT PAGE -->
-    <div class="about-page">
-        <div class="about poppins-bold">
-            <p>About</p>
-          </div>
-        <div class="poppins-regular">
-            <p class="container">
-              An online voting system that will replace the old ballot sytem or paper
-              system. Over the time we have utilized the required technology in every
-              sector to improve efficiency and save the extra resources. But the
-              voting system is still very expensive and requires a bigger workforce.
-              The system is slower and still not completely tamper proof. We bring the
-              system that is safe, reliable and solve the modern issues like higher
-              reachability of the booth, crowd free voting, inexpensive, faster
-              results and others.
-            </p>
-        </div>
+    <div class="about-page" id="about-section">
+      <div class="about poppins-bold">
+        <p class="about-heading">About</p>
+      </div>
+      <div class="poppins-regular">
+        <p class="container">
+          An online voting system that will replace the old ballot sytem or
+          paper system. Over the time we have utilized the required technology
+          in every sector to improve efficiency and save the extra resources.
+          But the voting system is still very expensive and requires a bigger
+          workforce. The system is slower and still not completely tamper proof.
+          We bring the system that is safe, reliable and solve the modern issues
+          like higher reachability of the booth, crowd free voting, inexpensive,
+          faster results and others.
+        </p>
+      </div>
     </div>
 
     <!-- HOW IT WORKS -->
     <div class="how-it-works">
-        <h1 id="step" class="poppins-semibold">Follow these easy steps</h1>
+      <h1 id="step" class="poppins-semibold">Follow these easy steps</h1>
       <div class="followSteps">
         <p class="poppins-medium">
           <svg
@@ -138,38 +138,68 @@
     </div>
 
     <!-- CONTACT FORM -->
-    <div class="contactSection">
-        <section class="contactContent">
-            <div>
-                <img src="./wall2 (1).jpg" alt="" style="height: 100vh;">
+    <div class="contactSection" id="contact-section">
+      <section class="contactContent">
+        <div>
+          <img src="./wall2 (1).jpg" alt="" style="height: 100vh" />
+        </div>
+      </section>
+      <section class="contactContent">
+        <h2>Contact</h2>
+        <form action="#">
+          <div class="input-box">
+            <div class="input-field field">
+              <input
+                type="text"
+                name="fullname"
+                placeholder="Full Name"
+                class="item"
+                autocomplete="off"
+                id="fullname"
+              />
+              <div class="error-text">Full Name cannot be blank</div>
             </div>
-        </section>
-        <section class="contactContent">
-            <h2>Contact</h2>
-            <form action="#">
-                <div class="input-box">
-                    <div class="input-field field">
-                        <input type="text" name="fullname" placeholder="Full Name" class="item" autocomplete="off" id="fullname">  
-                        <div class="error-text">Full Name cannot be blank</div> 
-                    </div>
-                    <div class="input-field field">
-                        <input type="email" name="email" placeholder="Email" class="item" autocomplete="off" id="email"> 
-                        <div class="error-text">Email Address should be valid</div>  
-                    </div>
-                </div>
-                <div class="input-box">
-                    <div class="input-field field">
-                        <input type="text" name="subject" placeholder="Subject" class="item" autocomplete="off" id="subject"> 
-                        <div class="error-text">Subject cannot be blank</div>    
-                    </div>
-                </div>
-                <div class="textarea-field field">
-                    <textarea name="" id="message" cols="30" rows="5" placeholder="Your Message" autocomplete="off" class="item" id="message"></textarea>
-                    <div class="error-text">Message cannot be blank</div> 
-                </div>
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
+            <div class="input-field field">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                class="item"
+                autocomplete="off"
+                id="email"
+              />
+              <div class="error-text">Email Address should be valid</div>
+            </div>
+          </div>
+          <div class="input-box">
+            <div class="input-field field">
+              <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                class="item"
+                autocomplete="off"
+                id="subject"
+              />
+              <div class="error-text">Subject cannot be blank</div>
+            </div>
+          </div>
+          <div class="textarea-field field">
+            <textarea
+              name=""
+              id="message"
+              cols="30"
+              rows="5"
+              placeholder="Your Message"
+              autocomplete="off"
+              class="item"
+              id="message"
+            ></textarea>
+            <div class="error-text">Message cannot be blank</div>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+      </section>
     </div>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="contactFormHandler.js" type="module"></script>

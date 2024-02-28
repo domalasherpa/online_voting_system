@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root{
-    --backgroundColor: #1f242d;
+    --backgroundColor: #0f0c29;
     --textColor: #ededed;
     --secondaryColor: #0D9276;
 }
@@ -11,7 +11,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    color:#1f242d;
+    color:var(--textColor);
 }
 
 .contactSection{
@@ -36,7 +36,7 @@
 
 .contactContent h2{
     font-size: 32px;
-    color: var(--textColor);
+    color: var(--secondaryColor);
     margin-bottom: 10px;
     text-align: center;
 }
@@ -73,6 +73,7 @@ form .textarea-field .item{
     font-size: 16px;
     color:var(--textColor);
     margin: 12px 0;
+    box-shadow: 0 0 3px #9ecaed;
 }
 
 .field .item:placeholder{
@@ -99,7 +100,7 @@ form button{
     padding: 10px 20px;
     background-color: var(--secondaryColor);
     border: none;
-    color: #333;
+    color: #ffff;
     outline: none;
     border-radius: 6px;
     font-size: 16px;
