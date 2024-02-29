@@ -37,7 +37,7 @@ nav{
 }
 
 
-ul{
+.wrapper ul{
     display: flex;
     justify-content: space-between;
     align-items: center;

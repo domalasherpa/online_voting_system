@@ -16,6 +16,7 @@
 
 .contactSection{
     display: flex;
+    flex-wrap:wrap;
     justify-content: space-between;
     align-items: center;
     min-height: 100vh;
@@ -23,7 +24,8 @@
 }
 
 .contactContent{
-    width: 50%;
+    /* width: 50%; */
+    flex: 1 1 auto;
     overflow: hidden;
 }
 
