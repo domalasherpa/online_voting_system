@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    --backgroundColor: #0f0c29;
+    --textColor: #ededed;
+    --secondaryColor: #0D9276;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color:var(--textColor);
+}
+
+.contactSection{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color:var(--backgroundColor);
+}
+
+.contactContent{
+    /* width: 50%; */
+    flex: 1 1 auto;
+    overflow: hidden;
+}
+
+.contactContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactContent h2{
+    font-size: 32px;
+    color: var(--secondaryColor);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.contactContent form{
+    width: 500px;
+    text-align: center;
+}
+
+form .input-box{
+    display: flex;
+    justify-content: space-between;
+}
+
+form .textarea-field .item{
+    resize: none;
+}
+
+.input-box:first-of-type .input-field{
+    width: 48.5%;
+}
+
+.input-box:nth-of-type(2) .field{
+    width: 100%;
+}
+
+.field .item{
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 2px solid var(--secondaryColor);
+    outline: none;
+    border-radius: 6px;
+    font-size: 16px;
+    color:var(--textColor);
+    margin: 12px 0;
+    box-shadow: 0 0 3px #9ecaed;
+}
+
+.field .item:placeholder{
+    color: rgba(255, 255, 255, .3 );
+}
+
+.field .error-text{
+    font-size: 12px;
+    color: #d93025;
+    text-align: left;
+    margin-top: -10px;
+    display: none;
+}
+
+.field.error .item{
+    border-color: #d93025;
+}
+
+.field.error .error-text{
+    display: block;
+}
+
+form button{
+    padding: 10px 20px;
+    background-color: var(--secondaryColor);
+    border: none;
+    color: #ffff;
+    outline: none;
+    border-radius: 6px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: .3s;
+}
+
+form button:hover{
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
+    border: 2px solid var(--secondaryColor);
+}
+
+form button:active{
+    background-color: var(--secondaryColor);
+    border: none;
+    color: #333;
+}
