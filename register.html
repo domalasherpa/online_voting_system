@@ -13,12 +13,14 @@
 <body>
 
 <div class="container">
-    <div class="profile-image">
-        <button type="button" class="btn-warning">
-            <i class="fa fa-upload"></i>PROFILE IMG  
-        <input type="file">
-    </button>
+    <div class="profile-container">
+        <div class="profile-image">
+            <img src="./views/images/contactImage.jpg"  id="imge">
+        </div>
+        <label for="pp" class="selectPP">Select Profile</label>
+        <input type="file" accept="image/jpeg , image/png , image/jpg" id="pp">
     </div>
+    
     <div class="register-form">
         <label for="name"></label>
         <input type="text" id="username" placeholder="Full Name" required>
@@ -65,6 +67,13 @@
     const togglePassword = document.getElementById("togglePassword");
     const confirmpassword = document.getElementById("confirm-password");
     const toggleconfirmPassword = document.getElementById("toggleconfirm-password");
+
+    const pp = document.getElementById('pp');
+    const image = document.getElementById('imge');
+
+    pp.onchange = function(){
+        image.src = URL.createObjectURL(pp.files[0]);
+    }
 
     function Toggle(passwordField,togglePassword){
         
