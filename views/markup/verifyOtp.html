@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify otp</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Verify otp</h1>
+        <label for="otp">Enter OTP:</label>
+        <input type="text" id="otp" name="otp">
+        <button type="submit" id="resendOTP">Resend OTP</button>
+        <button type="submit" id="verifyOTP">Verify OTP</button>
+    </div>
+
+    <script type="module">
+        import {sendotp} from "../scripts/registerFrontend.js";
+
+        const resendotp = document.getElementById("resendOTP");
+        const verifyotp = document.getElementById("verifyOTP");
+
+        resendotp.addEventListener('click', ()=>{
+            resendOTP();
+        });
+
+
+        verifyotp.addEventListener('click', ()=>{
+            verifyOTP();
+        });
+
+        async function resendOTP() {
+            const email = sessionStorage.getItem("email");
+            const res = await sendotp(email);
+            if (res.success == true) {
+                alert("OTP sent successfully");   //these message should be changed later on
+            }
+        }
+
+        async function verifyOTP() {
+            const userOTP = document.getElementById('otp').value;
+            try{
+                const res = await fetch('http://localhost:4000/api/v1/verifyOtp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: sessionStorage.getItem('email'), otp: userOTP })
+                })
+
+                const response = await res.json();
+                alert(response.message);   //these message should be changed later on
+            }
+            catch(error){
+                console.error('Error:', error);
+                alert('An error occurred while verifying OTP. Please try again later.');
+            };
+        }
+    </script>
+</body>
+</html>
