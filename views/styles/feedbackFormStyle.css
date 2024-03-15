@@ -124,3 +124,13 @@ form button:active{
     border: none;
     color: #333;
 }
+
+
+@media screen and (max-width: 520px){
+    .img{
+        display: none;
+    }
+    .formsec{
+        padding: 0 30px;
+    }
+}

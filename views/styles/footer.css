@@ -71,3 +71,14 @@
   background: #125688;
   color: white;
 }
+
+@media screen and (max-width: 520px) {
+  .footer-section{
+    display: block;
+    padding: 0 50px;
+  }
+
+  .ql{
+    display: none;
+  }
+}

@@ -33,7 +33,7 @@ nav{
 
 .content{
     width: 100%;
-    padding: 70px 150px;
+    padding: 3rem 9rem;
 }
 
 
@@ -45,7 +45,7 @@ nav{
 }
 
 .section-quote{
-    padding: 25px ;
+    padding: 20px;
 }
 
 li{
@@ -107,3 +107,27 @@ button{
     height: 3px; /* Adjust as needed */
     background-color:#0D9276 ; /* Color of the line */
 }
+
+@media screen and (max-width: 520px) {
+    .img{
+        display: none;
+    }
+
+    .content{
+        padding: 3rem  4rem;
+    }
+
+    span{
+        font-size:25px ;
+    }
+    
+    footer{
+        gap: 100px;
+    }
+
+    .readmore{
+        font-size: 16px;
+    }
+
+    
+  }
