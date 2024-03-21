@@ -15,6 +15,7 @@
 }
 
 .contactSection{
+    padding-right: 50px;
     display: flex;
     flex-wrap:wrap;
     justify-content: space-between;
@@ -44,7 +45,7 @@
 }
 
 .contactContent form{
-    width: 500px;
+    width: 100%;
     text-align: center;
 }
 
@@ -132,5 +133,9 @@ form button:active{
     }
     .formsec{
         padding: 0 30px;
+    }
+
+    .contactSection{
+        padding-right: 0px;
     }
 }
