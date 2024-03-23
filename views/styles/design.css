@@ -35,8 +35,7 @@ nav{
 
 .content{
     width: 100%;
-    padding: 4rem 9rem;
-    
+    padding: 4rem 9rem; 
 }
 
 
@@ -107,7 +106,7 @@ button{
     content: ''; /* Required for the pseudo-element */
     position: absolute;
     left: 0;
-    bottom: -1px;
+    bottom: 0px;
     width: 100%;
     height: 3px; /* Adjust as needed */
     background-color:#0D9276 ; /* Color of the line */
@@ -137,10 +136,14 @@ button{
     .content{
         padding: 3rem 2.2rem;
         width: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
+    
     .section-quote{
         padding: 30px 20px;
+        flex-basis: 70%;
     }
 
     .quote2{
@@ -159,4 +162,4 @@ button{
     .readmore{
         font-size: 13px;
     }
-
+}
