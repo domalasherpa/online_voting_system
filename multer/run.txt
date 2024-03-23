@@ -1,0 +1,7 @@
+Run these command
+
+npm install express multer uuid image-size
+npm init -y
+node server.js
+
+http://localhost:3000
