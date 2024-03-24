@@ -2,90 +2,85 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 100;
     font-style: normal;
-    background-color:#000000;
-}
-
-.container {
+    background: #0f0c29;
+  }
+  
+  .container {
     width: 500px;
-    height: 100vh;
+    height: fit-content;
     margin: 60px auto;
-    background-color: #000000;
     border-radius: 16px;
-    border-color: #0D9276;
-    border: 2px solid #0D9276;
+    border: 2px solid #0d9276;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    
-}
-
-.profile-container{
+  }
+  
+  .profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px auto;
     gap: 10px;
-}
-
-
-.profile-image {
+  }
+  
+  .profile-image {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     overflow: hidden;
-    color: #0D9276;
-    background-color:#000000;
-    text-align:center;
-    border: 2px solid #0D9276;
+    color: #0d9276;
+    background: none;
+    text-align: center;
+    border: 2px solid #0d9276;
     display: flex;
-
-}
-
-.selectPP{
+  }
+  
+  .selectPP {
     color: #fff;
     cursor: pointer;
-    background-color: #0D9276;
+    background-color: #0d9276;
     padding: 3px 10px;
     border-radius: 10px;
     font-weight: 200;
-}
-
-
-#pp{
+  }
+  
+  #pp {
     display: none;
-}
-
-.profile-image img {
+  }
+  
+  .profile-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.register-form {
+  }
+  
+  .register-form {
     width: 300px;
     margin-left: 20px;
-}
-
-.register-form label {
+  }
+  
+  .register-form label {
     display: block;
     margin-top: 20px;
     font-size: 18px;
-}
-
-.register-form input {
+  }
+  
+  .register-form input {
     width: 100%;
     padding: 10px 15px;
     border: none;
-    border: 1px solid #0D9276;
+    border: 1px solid #0d9276;
     border-radius: 10px;
     outline: none;
-    background-color: #000000;
+    background: transparent;
     color: #fff;
-}
-
-.register-form button {
-    background-color: #0D9276;
+  }
+  
+  .register-form button {
+    background-color: #0d9276;
+    box-shadow: 0 0 3px #0d9276;
     border-radius: 7px;
     color: #fff;
     border: none;
@@ -95,27 +90,37 @@ body {
     margin-top: 40px;
     margin-left: 70px;
     font-size: 15px;
-}
-p{
+  }
+  p {
     text-align: center;
     color: #fff;
     font-size: 15px;
     margin-top: 20px;
-}
-a{
-    color: #0D9276;
-}
-
-.loginAmit{
+  }
+  a {
+    color: #0d9276;
+  }
+  
+  .loginAmit {
     margin-left: 10px;
-}
-
-.already{
+  }
+  
+  .already {
     font-weight: 500;
-}
-
-@media screen and (max-width: 520px) {
-    .container{
-        width: 400px;
-    }
-}
+  }
+  
+  .error-text {
+    font-size: 12px;
+    font-weight: 300;
+    color: #d93025;
+    text-align: left;
+    display: none;
+  }
+  .field.error .error-text {
+    display: block;
+  }
+  
+  .field.error input {
+    border: 1px solid #d93025;
+  }
+  
