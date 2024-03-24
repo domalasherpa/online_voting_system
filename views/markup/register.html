@@ -147,25 +147,12 @@
         }
 
         if(validateInputs()){
-                            //this alert message should be replaced by sweet alert
-                // if(res.success == true){
-                //     const otp = await sendotp(res.User.email); 
-                //     sessionStorage.setItem("email", res.User.email);
-                //     window.location = "/views/markup/verifyOtp.html";
-                // }
-                // const response = await res.json();
-                const res = await signup(formData);
-                alert(res.message);
-                if(res.success == true){
-                    sessionStorage.setItem("email", formData.get('email'));
-                    window.location = "/views/markup/login.html";
-                }
-            // const res = await sendotp(formData.get('email'));
-            // if(res.success == true){
-            //     sessionStorage.setItem("formData", formData);
-            //     sessionStorage.setItem("email", formData.get('email'));
-            //     window.location = "/views/markup/verifyOtp.html";
-            // }
+            const res = await signup(formData);
+            alert(res.message);
+            if(res.success == true){
+                sessionStorage.setItem("email", formData.get('email'));
+                window.location = "/views/markup/login.html";
+            }
         }
     });
 </script>
