@@ -1,61 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/verifyotp.css">
     <title>Verify otp</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Verify otp</h1>
-        <label for="otp">Enter OTP:</label>
-        <input type="text" id="otp" name="otp">
-        <button type="submit" id="resendOTP">Resend OTP</button>
-        <button type="submit" id="verifyOTP">Verify OTP</button>
+      <h1>Device verification</h1>
+      <div class="input-otp">
+            <h2 style="text-align: center;">Email</h2> <br>
+            <p>We just sent your authentication code via email to your registered email.</p>
+            <br>
+            <label for="otp">Device verification Code</label>
+            <input type="text" id="otp" name="otp" placeholder="XXXXXX"/><br>
+            <button type="submit" id="verifyOTP">Verify OTP</button>
+      </div>
+      <div class="resend-otp">
+        <p>Having trouble verifying via email?</p>
+        <button type="submit" id="resendOTP">Resend the authentication code</button>
+      </div>
+      
     </div>
 
     <script type="module">
-        import {sendotp} from "../scripts/registerFrontend.js";
+      import { verifyOtp, sendotp } from "../scripts/frontAPI.js";
 
-        const resendotp = document.getElementById("resendOTP");
-        const verifyotp = document.getElementById("verifyOTP");
+      // Get DOM elements
+      const resendotp = document.getElementById("resendOTP");
+      const verifyotp = document.getElementById("verifyOTP");
 
-        resendotp.addEventListener('click', ()=>{
-            resendOTP();
-        });
+      resendotp.addEventListener("click", resendOTP);
+      verifyotp.addEventListener("click", verifyOTP);
 
-
-        verifyotp.addEventListener('click', ()=>{
-            verifyOTP();
-        });
-
-        async function resendOTP() {
-            const email = sessionStorage.getItem("email");
-            const res = await sendotp(email);
-            if (res.success == true) {
-                alert("OTP sent successfully");   //these message should be changed later on
-            }
+      async function resendOTP() {
+        const email = sessionStorage.getItem("email");
+        if (!email) {
+          console.error("Email not found in session storage");
+          return;
         }
 
-        async function verifyOTP() {
-            const userOTP = document.getElementById('otp').value;
-            try{
-                const res = await fetch('http://localhost:4000/api/v1/verifyOtp', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email: sessionStorage.getItem('email'), otp: userOTP })
-                })
-
-                const response = await res.json();
-                alert(response.message);   //these message should be changed later on
-            }
-            catch(error){
-                console.error('Error:', error);
-                alert('An error occurred while verifying OTP. Please try again later.');
-            };
+        try {
+          const res = await sendotp(email);
+          if (res && res.success) {
+            alert("OTP sent successfully"); // Update UI to provide feedback
+          } else {
+            console.error("Failed to send OTP:", res.message);
+          }
+        } catch (error) {
+          console.error("Error sending OTP:", error);
         }
+      }
+
+      async function verifyOTP() {
+        const email = sessionStorage.getItem("email");
+        const otp = document.getElementById("otp").value;
+        if (!email) {
+          console.error("Email not found in session storage");
+          return;
+        }
+
+        // Validate OTP value
+        if (!otp) {
+          alert("Please enter OTP"); // Update UI to provide feedback
+          return;
+        }
+
+        try {
+          const res = await verifyOtp(email, otp);
+          if (res && res.success) {
+            alert(res.message); // Update UI to provide feedback
+          } else {
+            console.error("OTP verification failed:", res.message);
+          }
+        } catch (error) {
+          console.error("Error verifying OTP:", error);
+        }
+      }
     </script>
-</body>
+  </body>
 </html>
