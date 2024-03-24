@@ -24,11 +24,13 @@ const userSchema = new mongoose.Schema({
         default: ""
     },
     verfied:{
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     role: {
         type: String,
-        enum : ['Admin', 'User']
+        enum : ['Admin', 'User'],
+        default: 'User'
     }
 })
 

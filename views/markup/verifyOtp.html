@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/verifyotp.css">
+    <title>Verify otp</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Device verification</h1>
+      <div class="input-otp">
+            <h2 style="text-align: center;">Email</h2> <br>
+            <p>We just sent your authentication code via email to your registered email.</p>
+            <br>
+            <label for="otp">Device verification Code</label>
+            <input type="text" id="otp" name="otp" placeholder="XXXXXX"/><br>
+            <button type="submit" id="verifyOTP">Verify OTP</button>
+      </div>
+      <div class="resend-otp">
+        <p>Having trouble verifying via email?</p>
+        <button type="submit" id="resendOTP">Resend the authentication code</button>
+      </div>
+      
+    </div>
+
+    <script type="module">
+      import { verifyOtp, sendotp } from "../scripts/frontAPI.js";
+
+      // Get DOM elements
+      const resendotp = document.getElementById("resendOTP");
+      const verifyotp = document.getElementById("verifyOTP");
+
+      resendotp.addEventListener("click", resendOTP);
+      verifyotp.addEventListener("click", verifyOTP);
+
+      async function resendOTP() {
+        const email = sessionStorage.getItem("email");
+        if (!email) {
+          console.error("Email not found in session storage");
+          return;
+        }
+
+        try {
+          const res = await sendotp(email);
+          if (res && res.success) {
+            alert("OTP sent successfully"); // Update UI to provide feedback
+          } else {
+            console.error("Failed to send OTP:", res.message);
+          }
+        } catch (error) {
+          console.error("Error sending OTP:", error);
+        }
+      }
+
+      async function verifyOTP() {
+        const email = sessionStorage.getItem("email");
+        const otp = document.getElementById("otp").value;
+        if (!email) {
+          console.error("Email not found in session storage");
+          return;
+        }
+
+        // Validate OTP value
+        if (!otp) {
+          alert("Please enter OTP"); // Update UI to provide feedback
+          return;
+        }
+
+        try {
+          const res = await verifyOtp(email, otp);
+          if (res && res.success) {
+            alert(res.message); // Update UI to provide feedback
+          } else {
+            console.error("OTP verification failed:", res.message);
+          }
+        } catch (error) {
+          console.error("Error verifying OTP:", error);
+        }
+      }
+    </script>
+  </body>
+</html>

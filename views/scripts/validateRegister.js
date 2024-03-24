@@ -1,22 +1,14 @@
-const form = document.getElementById('form');
 const username = document.getElementById('username');
 const phonenumber = document.getElementById('phonenumber');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const confirmPassword = document.getElementById('confirm-password');
+const form = document.getElementById('form');
 
 
-form.addEventListener('submit',e => {
-    e.preventDefault();
-
-    validateInputs();
-
-    
-});
-
-function validateInputs(){
+export default function validateInputs(){
     const items = document.querySelectorAll(".item");
-    console.log(items.length);
+
     for(const item of items){
         if(item.value == ""){
             item.classList.add("error");
@@ -27,12 +19,20 @@ function validateInputs(){
             checkEmail(email);
         }
 
+        if(items[2].value != ""){
+            validatePhoneNumber(phonenumber);
+        }
+
         if(items[3].value != ""){
             checkPassword(password);
         }
 
         items[1].addEventListener("keyup", ()=>{
             checkEmail(email);
+        })
+
+        items[2].addEventListener("keyup", ()=>{
+            validatePhoneNumber(phonenumber);
         })
 
         items[3].addEventListener("keyup", ()=>{
@@ -57,6 +57,17 @@ function validateInputs(){
                 item.parentElement.classList.add("error");
             }
         })
+    }
+
+    if(!username.classList.contains('error') && 
+        !phonenumber.classList.contains('error') &&
+        !email.classList.contains('error') &&
+        !password.classList.contains('error') &&
+        !confirmPassword.classList.contains('error')){
+            return true;
+        }
+    else{
+        return false;
     }
 }
 
@@ -85,6 +96,18 @@ function checkPassword(password){
     }
 }
 
+function validatePhoneNumber(phonenumber) {
+    var phonenumberRegex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+    if(!phonenumber.value.match(phonenumberRegex)){
+        phonenumber.classList.add("error");
+        phonenumber.parentElement.classList.add("error");
+    }
+    else{
+        phonenumber.classList.remove("error");
+        phonenumber.parentElement.classList.remove("error");
+    }
+}
+
 function passwordMatch(password1, password2){
     if(password1.value !== password2.value){
         password2.classList.add("error");
@@ -95,3 +118,4 @@ function passwordMatch(password1, password2){
         password2.parentElement.classList.remove("error");
     }
 }
+
