@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required : true,
-        trim: true
+        trim: true,
     },
     phone_no:{
         type: String,
@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    verfied:{
+    verified:{
         type: Boolean,
         default: false
     },
@@ -31,7 +31,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum : ['Admin', 'User'],
         default: 'User'
-    }
+    },
+    createdAt: {
+		type: Date,
+		default: Date.now
+	},
 })
 
 module.exports = mongoose.model('user', userSchema)
