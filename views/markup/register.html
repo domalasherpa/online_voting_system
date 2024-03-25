@@ -99,8 +99,8 @@
     const image = document.getElementById("imge");
 
     pp.onchange = function () {
-        if(pp.files[0] && pp.files[0].size > 5000000){
-            alert("file size should be less than 5MB");
+        if(pp.files[0] && pp.files[0].size > 307200){ 
+            alert("file size should be less than 300kB");
         }else{
             image.src = URL.createObjectURL(pp.files[0]);
             console.log(image.src);
@@ -142,7 +142,7 @@
         formData.append("email", email.value);
         formData.append("password", password.value);
         formData.append("phone_no", phonenumber.value);
-        if(pp.files[0] && pp.files[0].size < 3000000){
+        if(pp.files[0] && pp.files[0].size < 307200){
             formData.append("profile", pp.files[0]);
         }
 
