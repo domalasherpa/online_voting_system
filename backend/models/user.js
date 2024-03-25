@@ -23,9 +23,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    verified:{
-        type: Boolean,
-        default: false
+    verfied:{
+        type: Boolean
     },
     role: {
         type: String,
