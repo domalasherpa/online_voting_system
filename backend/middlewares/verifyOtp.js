@@ -9,7 +9,6 @@ exports.verifyOtp = async(req, res, next)=>{
        const response = await OTP.find({ email }).sort({ createdAt: -1 }).limit(1);
       
        const User = await user.findOne({email});
-       if(User && User.verified == true) return next(createError(400, "User already verified"));
 
        if (response.length === 0) { 
             return next(createError(400, "The otp is not valid."));
