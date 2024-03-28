@@ -28,9 +28,14 @@ exports.signin = async(req, res, next)=> {
 
         //verify password and generate a JWt token 🔎
         if(await bcrypt.compare(password, User.password)){
+            console.log("They match..");
             req.user = User;
+            next();
         }
-        next();
+        else{
+            next(createHttpError(400, "Invalid email or password"));
+        }
+        
     } catch (error) {
         console.error(error)
         next(createHttpError.InternalServerError());
