@@ -3,15 +3,15 @@ const router = express.Router();
 
 const candidateController = require('../controllers/candidateController');
 
-// Get all elections
+// Get all candidates
 router.get('/getallcandidates', candidateController.getAllCandidates);
-//get election by id
+//get candidate by id
 router.get('/getcandidate/:id', candidateController.getCandidateById);
-// Create a new election
+// Create a new candidate
 router.post('/create-candidate', candidateController.createCandidate);
 // update election by id
-router.put('/update-candidate/:id', electionController.updateCandidate);
-// delete category by id
-router.delete('/delete-candidate/:id', electionController.deleteCandidate);
+router.put('/update-candidate/:id', candidateController.updateCandidate);
+// delete candidate by id
+router.delete('/delete-candidate/:id', candidateController.deleteCandidate);
 
 module.exports = router;
