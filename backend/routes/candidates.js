@@ -9,7 +9,7 @@ router.get('/getallcandidates', candidateController.getAllCandidates);
 router.get('/getcandidate/:id', candidateController.getCandidateById);
 // Create a new candidate
 router.post('/create-candidate', candidateController.createCandidate);
-// update election by id
+// update candidate by id
 router.put('/update-candidate/:id', candidateController.updateCandidate);
 // delete candidate by id
 router.delete('/delete-candidate/:id', candidateController.deleteCandidate);
