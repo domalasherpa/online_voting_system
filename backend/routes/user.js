@@ -8,4 +8,5 @@ const {sendotp}= require("../controllers/sendotp");
 router.post('/signup', signup);
 router.post('/sendotp', sendotp);
 
+//setup routes for api/v1/elections
 module.exports = router

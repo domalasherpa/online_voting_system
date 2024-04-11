@@ -6,20 +6,21 @@ const PORT = 3000;
 
 // Connect to MongoDB with correct database name
 mongoose.connect('mongodb://localhost/AllCandidate');
-
+app.use(express.json());
 // Define Candidate schema
-const candidateSchema = new mongoose.Schema({
-    name: String,
-    age: Number,
-    mobileNumber: String,
-    position: String,
-    citizenshipNumber: String,
-    email: String,
-    address: String
-});
+// const candidateSchema = new mongoose.Schema({
+//     name: String,
+//     age: Number,
+//     mobileNumber: String,
+//     position: String,
+//     citizenshipNumber: String,
+//     email: String,
+//     address: String
+// });
 
 // Define Candidate model
-const Candidate = mongoose.model('Candidate', candidateSchema);
+// const Candidate = mongoose.model('Candidate', candidateSchema);
+const Candidate = require('../models/candidate.js');
 
 // Route to fetch all candidates
 app.get('/candidates', async (req, res) => {
@@ -32,6 +33,17 @@ app.get('/candidates', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
+app.post('/candidates', async (req, res) => {
+    try {
+        console.log(req.body);
+      const newCandidate = await Candidate.create(req.body); // Assuming you're sending user data in the request body
+      res.status(201).json(newCandidate);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Server Error');
+    }
+  });
 
 // Route to serve HTML file
 app.get('/', (req, res) => {

@@ -20,11 +20,17 @@ const electionSchema = new mongoose.Schema({
             message: 'End date must be after start date'
         }
     },
-    candidates: [{
+    candidates: [
+        {
+        _id:false,   //stops mongoose from creating it's own id
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Candidate'
     }],
     created_at: {
+        type: Date,
+        default: Date.now
+    },
+    updated_at: {
         type: Date,
         default: Date.now
     }

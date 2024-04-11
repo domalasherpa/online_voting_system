@@ -1,0 +1,38 @@
+<%- include('header') %>
+
+<%- include('sidebar') %>
+
+<section id="content">
+<%- include('navbar') %>
+
+<%- include('main_content') %>
+</section>
+<%- include('footer') %>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            // Attach click event listener to sidebar links
+            document.querySelectorAll('.sidebar-link').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var page = this.getAttribute('href');
+
+                    // Make fetch request to fetch data
+                    fetch(page)
+                    .then(function(response) {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(function(data) {
+                        // Update main content with fetched data
+                        document.getElementById('main-content').innerHTML = data;
+                    })
+                    .catch(function(error) {
+                        console.error('Error fetching data:', error);
+                    });
+                });
+            });
+        });
+</script>

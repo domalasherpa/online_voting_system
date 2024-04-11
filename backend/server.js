@@ -10,7 +10,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(cors());
-
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
 
 //calling Database function
 require('./config/database').connect()
@@ -20,6 +21,10 @@ require('./config/database').connect()
 const user = require('./routes/user')
 
 app.use('/api/v1', user)
+
+app.use('/main', (req, res)=>{
+    res.render('pages/dashboard');
+})
 
 app.listen(PORT, ()=>{
     console.log("Server Started")

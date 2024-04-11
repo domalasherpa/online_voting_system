@@ -5,23 +5,23 @@ const app = express();
 const PORT = 3000;
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/AllUsers');
+mongoose.connect('mongodb://localhost/try');
 
 // Define User schema
-const userSchema = new mongoose.Schema({
-  name: String,
-  parentName: String,
-  age: Number,
-  mobileNumber: String,
-  email: String,
-  citizenshipNumber: String,
-  address: String,
-  eligible: Boolean,
-  verified: Boolean
-});
+// const userSchema = new mongoose.Schema({
+//   name: String,
+//   parentName: String,
+//   age: Number,
+//   mobileNumber: String,
+//   email: String,
+//   citizenshipNumber: String,
+//   address: String,
+//   eligible: Boolean,
+//   verified: Boolean
+// });
 
 // Define User model
-const User = mongoose.model('User', userSchema);
+const User = require('../models/user.js');
 
 // Route to fetch all users
 app.get('/users', async (req, res) => {
