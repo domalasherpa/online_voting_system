@@ -5,6 +5,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '../views'));
+app.use(express.static(path.join(__dirname, '../views')));
+
 require('dotenv').config()
 const PORT = process.env.PORT || 4000
 
@@ -26,9 +30,10 @@ require('./config/database').connect();
 
 //route importing and mounting
 const user = require('./routes/user');
-
+const password = require('./routes/password');
 
 app.use('/api/v1', user);
+app.use('/api/v1', password);
 
 //error handling
 app.use((err, req, res, next) => {
