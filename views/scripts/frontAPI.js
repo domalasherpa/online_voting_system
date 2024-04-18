@@ -13,7 +13,7 @@ export async function sendotp(email){
         const newItem = await res.json();
         return newItem;
     } catch (err) {
-        console.error(err);
+        console.log("client side: ",  err);
     }
 }
 
@@ -25,10 +25,9 @@ export async function signup(formData){
         });
         
         const newItem = await res.json();
-        console.log(newItem);
         return newItem;
     } catch (err) {
-        alert("Client side: ", err);
+        console.log("Client side: ", err);
     }
 }
 
@@ -47,7 +46,7 @@ export async function verifyOtp(email, otp){
         const newItem = await res.json();
         return newItem;
     } catch (err) {
-        alert("Client side: ", err);
+        console.log("Client side: ", err);
     }
 }
 

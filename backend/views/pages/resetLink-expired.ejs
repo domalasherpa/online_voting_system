@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Reset Link Expired or Invalid</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            /* Light gray */
+            color: #333;
+            /* Dark gray for text */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        a {
+            color:turquoise;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Whoops, that's an expired link !!!</h1>
+        <p>
+            The password reset link you followed is either expired or invalid.
+            Please try requesting a new password reset link.
+        </p>
+        <p>If you already reset your password, sign in.</p>
+        <a href="<%-apiBaseUrl%>/markup/login.html">Sign In</a>
+    </div>
+</body>
+
+</html>
