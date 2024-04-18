@@ -69,7 +69,7 @@
             
             <button type="submit" id="sendotp"><b>REGISTER</b></button>
             <div class="already">
-                <P>Already Registered? <a class="loginAmit" href="#">Log In </a></P>
+                <P>Already Registered? <a class="loginAmit" href="../markup/login.html">Log In </a></P>
             </div>
         
         </div>
@@ -80,7 +80,8 @@
 <script type="module">
     // import "./register.js";
     import validateInputs from "../scripts/validateRegister.js";
-    import {sendotp, signup } from "../scripts/frontAPI.js";
+    import {signup} from "../scripts/frontAPI.js";
+
     
     const username = document.getElementById('username');
     const phonenumber = document.getElementById('phonenumber');
@@ -98,8 +99,8 @@
     const image = document.getElementById("imge");
 
     pp.onchange = function () {
-        if(pp.files[0] && pp.files[0].size > 5000000){
-            alert("file size should be less than 5MB");
+        if(pp.files[0] && pp.files[0].size > 307200){ 
+            alert("file size should be less than 300kB");
         }else{
             image.src = URL.createObjectURL(pp.files[0]);
             console.log(image.src);
@@ -141,19 +142,17 @@
         formData.append("email", email.value);
         formData.append("password", password.value);
         formData.append("phone_no", phonenumber.value);
-        if(pp.files[0] && pp.files[0].size < 5000000){
+        if(pp.files[0] && pp.files[0].size < 307200){
             formData.append("profile", pp.files[0]);
         }
 
         if(validateInputs()){
-            signup(formData).then(async(res)=>{
-                alert(res.message);                 //this alert message should be replaced by sweet alert
-                if(res.success == true){
-                    const otp = await sendotp(res.User.email); 
-                    sessionStorage.setItem("email", res.User.email);
-                    window.location = "/verifyOtp.html";
-                }
-            }).catch(error=>{console.log(error)});
+            const res = await signup(formData);
+            alert(res.message);
+            if(res.success == true){
+                sessionStorage.setItem("email", formData.get('email'));
+                window.location = "/views/markup/login.html";
+            }
         }
     });
 </script>

@@ -1,24 +1,17 @@
 const otpGenerator = require("otp-generator");
 const user = require("../models/user");
 const OTP = require('../models/OTP');
+const { generateToken } = require("../middlewares/jwtAuthMiddleware");
+require('dotenv').config();
 
 
 exports.sendotp = async (req, res) => {
 	try {
-		const { email } = req.body;
-		console.log(req.body);
-		// Check if user is already present
-		// Find user with provided email
-		const checkUserPresent = await user.findOne({ email });
-		// to be used in case of signup
+		const email= req.body["email"];
+		let User = req.user ?? 0;
 
-		// If user found with provided email
-		if (checkUserPresent) {
-			// Return 401 Unauthorized status code with error message
-			return res.status(401).json({
-				success: false,
-				message: `User is Already Registered`,
-			});
+		if(!user){
+			User = await findOne({email: `${email}`});
 		}
 
 		var otp = otpGenerator.generate(6, {
@@ -39,13 +32,33 @@ exports.sendotp = async (req, res) => {
 			});
 		}
         
+		const payload ={
+			email: User.email,
+			id: User._id,
+			role: User.role,
+		}
+
+		const token =  generateToken(payload, process.env.JWT_AUTH_SECRET);
+
+		// User.password = undefined
+		const options = {
+		expires: new Date( Date.now()+ 3*24*60*60*1000),
+		httpOnly: true , //It will make cookie not accessible on clinet side -> good way to keep hackers away
+		path: '/'
+		}
+
 		const otpPayload = { email, otp };
 		const otpBody = await OTP.create(otpPayload);
 		console.log("OTP Body", otpBody);
-		res.status(200).json({
+		// const token =  generateToken({email}, process.env.JWT_AUTH_SECRET);
+		return res.cookie(
+			"token",
+			token,
+			options
+		).status(200).json({
 			success: true,
 			message: `OTP Sent Successfully`,
-			otp,
+			token: token
 		});
 	} catch (error) {
 		console.log(error.message);
