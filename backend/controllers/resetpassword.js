@@ -28,7 +28,6 @@ exports.sendResetLink =async (req, res, next)=>{
         const token = jwt.sign(payload, secret , {expiresIn: "15m"});
 
         const link = `http://localhost:4000/api/v1/reset-password/${User.id}/${token}`;
-        console.log(link);
         await mailSender(User.email, "reset password", link);
         return res.status(200).json({"success": true, "message": "password reset link has been sent!"});
     }
@@ -40,11 +39,8 @@ exports.sendResetLink =async (req, res, next)=>{
 
 exports.sendResetPasswordPage = async(req, res, next)=>{
     const {id,token} = req.params;
-    // console.log(id, "\n", token);
-    //check if this id exists in db
     const User = await user.findById(id);
     if(!User){
-        // res.send("Invalid ID");
         return res.status(400).json({
             "success": false, 
             "message": "Invalid id"
@@ -52,29 +48,33 @@ exports.sendResetPasswordPage = async(req, res, next)=>{
     }
     //valid id and have valid user with this id
     const secret = process.env.JWT_AUTH_SECRET + User.password;
+    console.log("secret: ", secret);
     try{
         const payload = jwt.verify(token , secret);
-        res.render("reset-password", {email: User.email, id, token});
+        res.render("pages/reset-password", {email: User.email, id, token});
     }catch(e){
         console.log(e.message);
-        return res.send(e.message)
+        const apiBaseUrl = process.env.API_BASE_URL;
+        res.render('pages/resetLink-expired.ejs', {apiBaseUrl});
     }
 }
 
 exports.verifyPasswordToken = async(req, res, next)=>{
     const {id,token} = req.params;
     const {password, password2} = req.body;
+    const passwordRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/;
 
+    if(!password.match(passwordRegex) && password != password2){
+        return res.status(400).json({'success': false, 'message': 'Incorrect password format'});
+    }
     
     const User = await user.findById(id);
-
     const secret = process.env.JWT_AUTH_SECRET + User.password;
     try {
         const payload = jwt.verify(token,secret);
         let hashedPassword = await bcrypt.hash(password, 10);
         User.password = hashedPassword;
         await User.save(); //save in mongodb
-        // return res.json(User);
         res.locals.status = 200;
         next();
         
