@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors');
+const path = require('path');
 
 const app = express()
 
@@ -18,13 +19,17 @@ require('./config/database').connect()
 
 
 //route importing and mounting
-const user = require('./routes/user')
+const auth = require('./routes/auth')
 
-app.use('/api/v1', user)
+app.use('/api/v1', auth)
 
 app.use('/main', (req, res)=>{
     res.render('pages/dashboard');
 })
+
+app.use('/elections', (req, res)=>{
+    res.sendFile(path.join(__dirname, 'allelection', 'electionDetails.html'));
+} )
 
 app.listen(PORT, ()=>{
     console.log("Server Started")

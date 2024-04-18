@@ -97,7 +97,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- <div class="container">
         <h1>Election Details</h1>
         <div class="search-container">
             <input type="text" class="search-input" placeholder="Search by Name">
@@ -117,7 +117,30 @@
                 <!-- election details will be dynamically inserted here -->
             </tbody>
         </table>
-    </div>
+    </div> -->
+        <div class="table-data"> 
+            <div class="order">
+                <div class="head">
+                    <h3>Election Details</h3>
+                    <i class='bx bx-search' ></i>
+                    <i class='bx bx-filter' ></i>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Organization</th>
+                            <th>Candidate Count</th>
+                            <th>Voter Count</th>
+                        </tr>
+                    </thead>
+                    <tbody class="election-cards">
+
+                    </tbody>
+                </table>
+            </div>
     <script>
         fetch('/elections')
             .then(response => response.json())
