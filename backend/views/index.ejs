@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+      }
+      .profile {
+        text-align: center;
+      }
+      .profile img {
+        width: 150px;
+        border-radius: 50%;
+      }
+      .profile h2 {
+        margin-bottom: 10px;
+      }
+      .profile p {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile">
+        <img src="user_photo.jpg" alt="User Photo" />
+        <h2><%= user.name %></h2>
+        <p>Email: <%= user.email %></p>
+        <p>Age: <%= user.age %></p>
+      </div>
+    </div>
+  </body>
+</html>
