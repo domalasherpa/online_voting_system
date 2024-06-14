@@ -1,0 +1,49 @@
+<%- include('../partials/header') %>
+<title>AdminHub</title>
+<!-- <link rel="stylesheet" href="/css/elections.css" type="text/css"> -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+</head>
+<body>
+<%- include('../partials/sidebar') %>
+
+<section id="content">
+<%- include('../partials/navbar') %>
+<%- include('../partials/elections/add_election') %>
+</section>
+<script src="/js/actions.js"></script>
+<script>
+    async function validateElection(event) {
+        alert("inside validation")
+        event.preventDefault();
+
+        try{
+            const electionName = document.getElementById('election-name').value;
+            const startDate = document.querySelector(".startDate").value;
+            const endDate = document.querySelector(".endDate").value;
+
+            // Check if the fields are not empty
+            if (electionName.trim() === '' || startDate.trim() === '' || endDate.trim() === '') {
+                alert('Please fill in all fields.');
+                return false;
+            }
+
+            const sDate = new Date(startDate);
+            const eDate = new Date(endDate);
+
+            if (sDate > eDate) {
+                alert("Please enter a valid end date.");
+                return false;
+            } else {
+                alert(electionName, startDate, endDate);
+                await addResource('elections', { name: electionName, startDate: startDate, endDate: endDate });
+                return true;
+            }
+        }
+        catch(error){
+            alert("error adding election");
+        }
+    }
+</script>   
+
+<%- include('../partials/footer') %>

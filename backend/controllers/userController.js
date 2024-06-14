@@ -5,7 +5,7 @@ const userController = {
     getAllUsers: async (req, res) => {
         try {
             const users = await User.find();
-            res.json(users);
+            res.render('pages/users', {users});
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
@@ -61,6 +61,7 @@ const userController = {
             }
             res.json({ message: "User deleted successfully" });
         } catch (error) {
+            console.log("user not deleted sucessfully");
             res.status(400).json({ error: error.message });
         }
     },

@@ -29,12 +29,24 @@ require('./config/database').connect();
 
 
 //route importing and mounting
-const user = require('./routes/user');
+const auth = require('./routes/auth');
 const password = require('./routes/password');
+const election = require('./routes/elections');
+const candidate = require('./routes/candidates');
+const user = require('./routes/users');
 
-app.use('/api/v1', user);
+
+app.use('/api/v1', auth);
 app.use('/api/v1', password);
+app.use('/api/v1', election);
+app.use('/api/v1', candidate);
+app.use('/api/v1', user);
+// app.use('/api/v1/elections', (req, res)=>{
+//     res.render('pages/elections.ejs');
+// })
 
+
+app.use('/', election);
 //error handling
 app.use((err, req, res, next) => {
     

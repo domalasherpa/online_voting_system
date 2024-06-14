@@ -1,12 +1,16 @@
 <%- include('../partials/header') %>
-
+<title>AdminHub</title>
+<!-- <link rel="stylesheet" href="/css/elections.css" type="text/css"> -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
 <%- include('../partials/sidebar') %>
 
 <section id="content">
 <%- include('../partials/navbar') %>
-
-<%- include('../partials/main_content') %>
+<%- include('../partials/elections/display_elections', {elections: elections}) %>
 </section>
+<script src="/js/actions.js"></script>
 <%- include('../partials/footer') %>
 <!-- 
 <script>

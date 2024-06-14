@@ -1,0 +1,13 @@
+<%- include('../partials/header') %>
+<title>AdminHub</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<%- include('../partials/sidebar') %>
+
+<section id="content">
+<%- include('../partials/navbar') %>
+<%- include('../partials/users/display_users', {users: users}) %>
+</section>
+<script src="/js/actions.js"></script>
+<%- include('../partials/footer') %>

@@ -1,0 +1,37 @@
+<!-- display single candidate details -->
+<header class="bg-white shadow mb-3">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Candidate Information</h1>
+    </div>
+</header>
+<div class="space-y-8 md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-start md:justify-center">
+    <div class="px-4  md:w-1/5 sm:w-full">
+        <img  class="w-36 h-36" src="/uploads/<%=candidate.imageUrl ?? 'blankUser.png'%>" alt="Extra large avatar">
+    </div>
+
+    <div class="mt-6 border-t border-gray-100 w-4/5 sm:w-full">
+        <dl class="divide-y divide-gray-100">
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt class="text-sm font-medium leading-6 text-gray-900">Party</dt>
+                <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%=candidate.party%></dd>
+            </div>
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt class="text-sm font-medium leading-6 text-gray-900">Full name</dt>
+                <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%=candidate.name%></dd>
+            </div>
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt class="text-sm font-medium leading-6 text-gray-900">Email address</dt>
+                <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%=candidate.email%></dd>
+            </div>
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt class="text-sm font-medium leading-6 text-gray-900">Phone</dt>
+                <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%=candidate.phone_no%>></dd>
+            </div>
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt class="text-sm font-medium leading-6 text-gray-900">Bio</dt>
+                <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%=candidate.bio%></dd>
+            </div>
+            <button class="px-5 py-2 rounded-md text-white bg-blue-900 hover:bg-blue-600 active:bg-blue-900">Vote</button>
+        </dl>
+    </div>
+</div>
